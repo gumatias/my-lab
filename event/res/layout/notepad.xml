@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/common_background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header1" />
+
+    <EditText
+        android:id="@+id/user_note"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:layout_weight="1"
+        android:gravity="top" />
+
+    <Button
+        android:id="@+id/save_note_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dip"
+        android:layout_weight="0"
+        android:background="@drawable/common_btn_selector"
+        android:text="@string/save"
+        android:textColor="@color/white" />
+
+</LinearLayout>

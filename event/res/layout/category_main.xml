@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/LinearLayout01" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:orientation="vertical"
+	android:background="@drawable/common_background">
+
+	<include layout="@layout/header1" />
+
+	<ListView android:id="@+id/categories_list"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:cacheColorHint="@color/transparent" android:divider="@drawable/separador2_lista">
+	</ListView>
+
+</LinearLayout>

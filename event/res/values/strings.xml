@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Eventos</string>
+	<string name="menu_schedule">Agenda</string>
+	<string name="menu_speakers">Palestrantes</string>
+	<string name="menu_social">Rede Social</string>
+	<string name="menu_more">Mais</string>
+	<string name="date">Data</string>
+	<string name="place">Local</string>
+	<string name="lecture_desc">Descrição da Palestra</string>
+	<string name="now">Agora</string>
+	<string name="loading">Carregando...</string>
+	<string name="save">Salvar</string>
+	<string name="back"> Voltar</string>
+	<string name="notepad"> Bloco de Notas</string>
+	<string name="schedule">Agenda</string>
+	<string name="favorites">Favoritos</string>
+	<string name="speaker">Palestrante</string>
+	<string name="filter">Filtro</string>
+	<string name="name">Nome</string>
+	<string name="email">E-mail</string>
+	<string name="twitter">Twitter</string>
+	<string name="lecture">Palestra</string>
+	<string name="ok">OK</string>
+	<string name="event">Evento</string>
+	<string name="event_hashtag">#something</string>
+	<string name="event_twitter">the_event</string>
+	<string name="parkinglot">Estacionamento</string>
+	<string name="restaurant">Restaurante</string>
+	<string name="sponsors_title">Mais detalhes sobre nossos patrocinadores.</string>
+	<string name="nocontacts">Sem Contatos</string>
+	<string name="tweet">Tweet</string>
+	<string name="tweet_sent">Tweet enviado !</string>
+	<string name="category">Categoria</string>
+	<string name="none">Nenhum</string>
+	<string name="all">Todas</string>
+	<string name="mine">Minhas</string>
+	<string name="share_event_subject">Evento no Ibirapuera</string>
+	<string name="share_event_body">Olá, Gostaria que você também fosse neste evento.
+	</string>
+	<string name="share_lecture_subject">Você deveria ir!</string>
+	<string name="share_lecture_body">Olá, acho que você também deveria ir!</string>
+	<string name="tweet_limit">limite de tweets alcançado</string>
+	<string name="empty_message">Menssagem está vazia</string>
+	<string name="failure">Failure</string>
+	<string name="no_internet">Sem conexão com a internet</string>
+	<string name="working">Aguarde...</string>
+	<string name="updating_tweets">Buscando tweets</string>
+	<string name="empty_schedule">Agenda está vazia</string>
+	<string name="warning">Aviso</string>
+	<string name="config">Configuração</string>
+	<string name="share">Compartilhe</string>
+	<string name="directions">Direções</string>
+	<string name="sponsors">Patrocinadores</string>
+	<string name="media">Galeria</string>
+	<string name="map">Mapa</string>
+	<string name="pull_to_refresh_pull_label">Puxe para atualizar...</string>
+	<string name="pull_to_refresh_release_label">Solte para atualizar...</string>
+	<string name="pull_to_refresh_refreshing_label">Carregando...</string>
+	<string name="pull_to_refresh_tap_label">Pressione para atualizar...</string>
+
+</resources>

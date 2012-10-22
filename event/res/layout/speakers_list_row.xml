@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="220dip"
+    android:background="@drawable/list_item_selector"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <LinearLayout
+        android:id="@+id/schedule_list_row_layout_3"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <RelativeLayout
+            android:id="@+id/schedule_list_row_layout_3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+
+            <ImageView
+                android:id="@+id/speaker_name_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:src="@drawable/palestrante_nome" />
+
+            <TextView
+                android:id="@+id/speaker_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:ellipsize="end"
+                android:paddingLeft="60dip"
+                android:singleLine="true"
+                android:text="@string/filter"
+                android:textColor="@color/red"
+                android:textSize="18dip" />
+
+            <ImageView
+                android:id="@+id/speaker_picture"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:src="@drawable/anonimo" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/schedule_list_row_layout_4"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingBottom="5dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip" >
+
+        <TextView
+            android:id="@+id/speaker_description"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:text="@string/favorites"
+            android:textColor="@color/gray" />
+
+        <Button
+            android:id="@+id/speaker_arrow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="0"
+            android:background="@drawable/next_btn_selector" />
+    </LinearLayout>
+
+</LinearLayout>

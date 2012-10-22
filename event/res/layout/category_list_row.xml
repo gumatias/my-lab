@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:minHeight="60dip"
+	android:orientation="horizontal" android:background="@drawable/list_item_selector"
+	android:paddingBottom="5dip" android:paddingLeft="10dip"
+	android:paddingRight="10dip" android:paddingTop="5dip">
+
+	<CheckedTextView android:id="@+id/category_chk"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_weight="0" android:checkMark="?android:attr/textCheckMark"
+		android:ellipsize="end" android:gravity="center_vertical"
+		android:singleLine="true" android:textColor="@color/red"
+		android:textSize="18dip" />
+
+</LinearLayout>

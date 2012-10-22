@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget36"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/common_background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header1" />
+
+    <LinearLayout
+        android:id="@+id/speakers_list_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@+id/speakers_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@color/transparent"
+            android:fastScrollEnabled="true"
+            android:smoothScrollbar="true"
+            android:divider="@drawable/separador_lista" />
+    </LinearLayout>
+
+</LinearLayout>

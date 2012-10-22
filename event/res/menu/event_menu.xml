@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_schedule" android:title="@string/menu_schedule" android:icon="@drawable/agenda_menu_icon" />
+	<item android:id="@+id/menu_speakers" android:title="@string/menu_speakers" android:icon="@drawable/mic_menu_icon"/>
+	<item android:id="@+id/menu_social" android:title="@string/menu_social" android:icon="@drawable/twitter_menu_icon"/>
+	<item android:id="@+id/menu_more" android:title="@string/menu_more" android:icon="@drawable/mais_menu_icon"/>
+</menu>

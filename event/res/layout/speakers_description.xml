@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/speakers_description_layout_0"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/common_background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/twitter_header" />
+
+    <LinearLayout
+        android:id="@+id/speakers_desc_layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="10dip" >
+
+        <RelativeLayout
+            android:id="@+id/schedule_list_row_layout_3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/speaker_name_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:src="@drawable/palestrante_nome" />
+
+            <TextView
+                android:id="@+id/speaker_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:ellipsize="end"
+                android:paddingLeft="60dip"
+                android:singleLine="true"
+                android:text="Speaker Name"
+                android:textColor="@color/red"
+                android:textSize="18dip" />
+
+            <ImageView
+                android:id="@+id/speaker_picture"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:src="@drawable/anonimo" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/speakers_desc_layout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/speakers_desc_layout1"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="10dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip" >
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="10dip" >
+
+                <TextView
+                    android:id="@+id/speaker_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/gray" />
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@drawable/separador2_lista" />
+
+            <ListView
+                android:id="@+id/speakers_lectures_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0"
+                android:cacheColorHint="@color/transparent"
+                android:divider="@drawable/separador2_lista"
+                android:listSelector="@drawable/list_item_selector"
+                android:smoothScrollbar="true" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@drawable/separador2_lista" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
