@@ -1,0 +1,69 @@
+<project name="films-videodownloader" default="all">
+
+	<!-- define the environment, depends on directories of your installation * -->
+	<property name="james.lib.dir" value="/home/gustavo/Desktop/James/james-2.3.2/apps/james/SAR-INF/lib" />
+	<property name="app-dir.dir" value="." />
+	<property name="app-lib.dir" value="${app-dir.dir}/lib" />
+	<!-- ********************************************************************* -->
+
+	<property name="app-sources.dir" value="${app-dir.dir}/src" />
+	<property name="app-classes.dir" value="${app-dir.dir}/bin" />
+
+	<!-- filename -->
+	<property name="app.jar" value="${ant.project.name}.jar" />
+
+	<!-- classpath -->
+	<path id="app.class.path">
+		<fileset dir="${app-lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- operation: all, everything -->
+	<target name="all" depends="clean,app-jar" />
+
+	<!-- operation: deploy -->
+	<target name="deploy-localhost" depends="all">
+		<copy todir="${james.lib.dir}">
+			<fileset dir="${app-dir.dir}">
+				<include name="${app.jar}" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- operation: undeploy -->
+	<target name="undeploy-localhost" depends="clean">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${jboss.deploy.dir}">
+				<include name="${app.jar}" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- operation: compile sources -->
+	<target name="compile-app">
+		<mkdir dir="${app-classes.dir}" />
+		<javac srcdir="${app-sources.dir}" destdir="${app-classes.dir}" debug="yes" includeantruntime="true">
+			<classpath refid="app.class.path" />
+		</javac>
+	</target>
+
+	<!-- operation: jar, assembling whole application -->
+	<target name="app-jar" depends="compile-app">
+		<jar jarfile="${app.jar}">
+			<fileset dir="${app-classes.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- operation: clean, deleting everything that's been built -->
+	<target name="clean">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir=".">
+				<include name="${app.jar}" />
+			</fileset>
+			<fileset dir="${app-classes.dir}" />
+		</delete>
+	</target>
+</project>
