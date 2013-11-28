@@ -1,4 +1,4 @@
 my-stuff
 ========
 
-My personal codes
+My personal projects
