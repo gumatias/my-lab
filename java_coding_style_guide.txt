@@ -96,6 +96,10 @@ when you contribute to my code, please follow these rules:
 * Don't overdesign.
  
 * Don't underdesign.
+
+* Don't try to predict the future (YAGNI):
+
+    http://xp.c2.com/YouArentGonnaNeedIt.html
  
 * Avoid bugs.
  
