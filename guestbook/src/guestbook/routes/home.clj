@@ -1,17 +1,21 @@
 (ns guestbook.routes.home
   (:require [compojure.core :refer :all]
             [guestbook.views.layout :as layout]
-            [hiccup.form :refer :all]))
+            [hiccup.form :refer :all]
+            [guestbook.models.db :as db]))
+
+(defn format-time [timestamp]
+  (-> "dd/MM/yyyy"
+      (java.text.SimpleDateFormat.)
+        (.format timestamp)))
 
 (defn show-guests []
   [:ul.guests
-   (for [{:keys [message name timestamp]}
-         [{:message "Howdy" :name "Bob" :timestamp nil}
-          {:message "Hello" :name "Bob" :timestamp nil}]]
+   (for [{:keys [message name timestamp]} (db/read-guests)]
      [:li
       [:blockquote message]
       [:p "-" [:cite name]]
-      [:time timestamp]])])
+      [:time (format-time timestamp)]])])
 
 
 (defn home [& [name message error]]
@@ -47,7 +51,7 @@
     (home name message "Don't you have something to say?")
     :else
     (do
-      (println name message)
+      (db/save-message name message)
       (home))))
 
 (defroutes home-routes
