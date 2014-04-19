@@ -7,7 +7,9 @@
             [noir.response :as resp]
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
-            [picture-gallery.models.db :as db]))
+            [picture-gallery.models.db :as db]
+            [picture-gallery.routes.upload :refer [gallery-path]])
+  (:import java.io.File))
 
 (defn format-error [id ex]
   (cond 
@@ -46,11 +48,17 @@
              [:br]
              (submit-button {:tabindex 4} "create account"))))
 
+(defn create-gallery-path []
+  (let [user-path (File. (gallery-path))]
+    (if-not (.exists user-path) (.mkdirs user-path))
+    (str (.getAbsolutePath user-path) File/separator)))
+
 (defn handle-registration [id pass pass1]
   (if (valid? id pass pass1)
     (try
       (db/create-user {:id id :pass (crypt/encrypt pass)}) 
       (session/put! :user id)
+      (create-gallery-path)
       (resp/redirect "/")
       (catch Exception ex
         (vali/rule false [:id (format-error id ex)])
