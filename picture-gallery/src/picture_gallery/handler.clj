@@ -6,13 +6,27 @@
             [picture-gallery.routes.auth :refer [auth-routes]]
             [picture-gallery.routes.upload :refer [upload-routes]]
             [noir.session :as session]
-            [picture-gallery.routes.gallery :refer [gallery-routes]]))
+            [picture-gallery.routes.gallery :refer [gallery-routes]]
+            [taoensso.timbre :as timbre]))
+
+(defn info-appender [{:keys [level message]}]
+  (println "level:" level "message:" message))
 
 (defn init []
-  (println "picture-gallery is starting"))
+  (timbre/set-config!
+    [:appenders :info-appender]
+    {:min-level :info
+     :enabled? true
+     :async? false
+     :max-message-per-msecs 100
+     :fn info-appender})
+  (timbre/set-config!
+    [:shared-appender-config :rotor]
+    {:path "/var/log/picture-gallery.log" :max-size (* 512 1024) :backlog 10})
+  (timbre/info "picture-gallery started successfuly"))
 
 (defn destroy []
-  (println "picture-gallery is shutting down"))
+  (timbre/info "picture-gallery is shutting down"))
 
 (defroutes app-routes
   (route/resources "/")

@@ -11,7 +11,8 @@
             [picture-gallery.models.db :as db]
             [clojure.java.io :as io]
             [noir.util.route :refer [restricted]]
-            [picture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]])
+            [picture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]]
+            [taoensso.timbre :refer [trace debug info warn error fatal]])
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
            java.awt.RenderingHints
@@ -74,7 +75,9 @@
     (io/delete-file (str (gallery-path) File/separator name))
     (io/delete-file (str (gallery-path) File/separator thumb-prefix name))
     "ok"
-    (catch Exception ex (.getMessage ex))))
+    (catch Exception ex 
+      (error ex "an error has occured while deleting " name)
+      (.getMessage ex))))
 
 (defn delete-images [names]
   (let [userid (session/get :user)]
