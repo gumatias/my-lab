@@ -11,8 +11,7 @@
             [picture-gallery.models.db :as db]
             [clojure.java.io :as io]
             [noir.util.route :refer [restricted]]
-            ; [picture-gallery.util :refer [galleries gallery-path]]
-            )
+            [picture-gallery.util :refer [galleries gallery-path thumb-prefix thumb-uri]])
   (:import [java.io File FileInputStream FileOutputStream]
            [java.awt.image AffineTransformOp BufferedImage]
            java.awt.RenderingHints
@@ -20,11 +19,6 @@
            javax.imageio.ImageIO))
 
 (def thumb-size 150)
-(def thumb-prefix "thumb_")
-(def galleries "galleries")
-
-(defn gallery-path []
-  (str galleries File/separator (session/get :user)))
 
 (defn scale [img ratio width height]
   (let [scale (AffineTransform/getScaleInstance 
@@ -54,8 +48,7 @@
     (form-to {:enctype "multipart/form-data"}
             [:post "/upload"]
             (file-upload :file)
-            (submit-button "upload")))
-  (resp/redirect "/"))
+            (submit-button "upload"))))
 
 (defn handle-upload [{:keys [filename] :as file}]
   (upload-page 
@@ -63,11 +56,12 @@
       "please select a file to upload"
       (try 
         ;; save the file and create the thubmnail
-        (upload-file (gallery-path) file :create-path? true)
+        (upload-file (gallery-path) file)
         (save-thumbnail file)
+        (db/add-image (session/get :user) filename)
         ;; display the thumbnail
         (image {:height "150px"}
-               (str "/img/" thumb-prefix (url-encode filename)))
+               (thumb-uri (session/get :user) filename))
         (catch Exception ex
           (str "error uploading file " (.getMessage ex)))))))
 
@@ -75,6 +69,7 @@
   (file-response (str galleries File/separator user-id File/separator file-name)))
 
 (defroutes upload-routes
+  (GET "/img/:user-id/:file-name" [user-id file-name] (serve-file user-id file-name))
   (GET "/upload" [info] (restricted (upload-page info)))
-  (POST "/upload" [file] (restricted (handle-upload file)))
-  (GET "/img/:user-id/:file-name" [user-id file-name] (serve-file user-id file-name)))
+  (POST "/upload" [file] (restricted (handle-upload file))))
+

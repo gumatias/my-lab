@@ -5,7 +5,8 @@
             [noir.util.middleware :as noir-middleware]
             [picture-gallery.routes.auth :refer [auth-routes]]
             [picture-gallery.routes.upload :refer [upload-routes]]
-            [noir.session :as session]))
+            [noir.session :as session]
+            [picture-gallery.routes.gallery :refer [gallery-routes]]))
 
 (defn init []
   (println "picture-gallery is starting"))
@@ -21,6 +22,12 @@
   (session/get :user))
 
 (def app
-  (noir-middleware/app-handler [auth-routes home-routes upload-routes app-routes :access-rules user-page]))
+  (noir-middleware/app-handler 
+    [auth-routes 
+     home-routes 
+     upload-routes 
+     gallery-routes
+     app-routes]
+     :access-rules [user-page]))
 
 
