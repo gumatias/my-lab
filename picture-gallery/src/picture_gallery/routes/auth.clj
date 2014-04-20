@@ -8,7 +8,9 @@
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
             [picture-gallery.models.db :as db]
-            [picture-gallery.util :refer [gallery-path]])
+            [picture-gallery.util :refer [gallery-path]]
+            [noir.util.route :refer [restricted]]
+            [picture-gallery.routes.upload :refer [delete-image]])
   (:import java.io.File))
 
 (defn format-error [id ex]
@@ -75,6 +77,22 @@
   (session/clear!)
   (resp/redirect "/"))
 
+(defn delete-account-page []
+  (layout/common
+    (form-to [:post "/confirm-delete"]
+             (submit-button "delete account"))
+    (form-to [:get "/"]
+             (submit-button "cancel"))))
+
+(defn handle-confirm-delete []
+  (let [user (session/get :user)]
+    (doseq [{:keys [name]} (db/images-by-user user)]
+      (delete-image user name))
+    (clojure.java.io/delete-file (gallery-path))
+    (db/delete-user user))
+  (session/clear!)
+  (resp/redirect "/"))
+
 (defroutes auth-routes 
   (GET "/register" []
        (registration-page))
@@ -83,4 +101,8 @@
   (POST "/login" [id pass]
         (handle-login id pass))
   (GET "/logout" []
-       (handle-logout)))
+       (handle-logout))
+  (GET "/delete-account" []
+       (restricted (delete-account-page)))
+  (POST "/confirm-delete" []
+        (restricted (handle-confirm-delete))))
