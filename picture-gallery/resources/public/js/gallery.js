@@ -11,7 +11,7 @@ function deleteImages() {
   if (selectedIds.length < 1) 
     alert("no images selected");
   else
-    $.post("/delete", 
+    $.post(context + "/delete", 
 	  {names: selectedIds}, 
 	  function(response){
 	    var errors = $('<ul>');
