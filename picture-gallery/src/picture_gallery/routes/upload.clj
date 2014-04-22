@@ -74,7 +74,7 @@
 
 (defn delete-images [names]
   (let [userid (session/get :user)]
-    (resp/json 
+    (resp/edn
       (for [name names] {:name name :status (delete-image userid name)}))))
 
 (defroutes upload-routes
