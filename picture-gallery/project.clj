@@ -9,7 +9,8 @@
                  [org.clojure/java.jdbc "0.2.3"]
                  [lib-noir "0.7.6"]
                  [com.taoensso/timbre "2.6.1"]
-                 [com.postspectacular/rotor "0.1.0"]]
+                 [com.postspectacular/rotor "0.1.0"]
+                 [selmer "0.5.4"]]
   :plugins [[lein-ring "0.8.10"]]
   :ring {:handler picture-gallery.handler/app
          :init picture-gallery.handler/init

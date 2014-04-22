@@ -42,14 +42,8 @@
       "jpeg"
       (File. (str path thumb-prefix filename)))))
 
-(defn upload-page [info]
-  (layout/common 
-    [:h2 "Upload an image"]
-    [:p info]
-    (form-to {:enctype "multipart/form-data"}
-            [:post "/upload"]
-            (file-upload :file)
-            (submit-button "upload"))))
+(defn upload-page [params]
+  (layout/render "upload.html" params))
 
 (defn handle-upload [{:keys [filename] :as file}]
   (upload-page 
@@ -60,10 +54,9 @@
         (upload-file (gallery-path) file)
         (save-thumbnail file)
         (db/add-image (session/get :user) filename)
-        ;; display the thumbnail
-        (image {:height "150px"}
-               (thumb-uri (session/get :user) filename))
+        {:image (thumb-uri (session/get :user) filename)}
         (catch Exception ex
+          (error ex "an error has occured while uploading" name)
           (str "error uploading file " (.getMessage ex)))))))
 
 (defn serve-file [user-id file-name]

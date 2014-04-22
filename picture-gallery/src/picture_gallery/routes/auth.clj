@@ -1,6 +1,5 @@
 (ns picture-gallery.routes.auth
-  (:require [hiccup.form :refer :all]
-            [compojure.core :refer :all]
+  (:require [compojure.core :refer :all]
             [picture-gallery.routes.home :refer :all]
             [picture-gallery.views.layout :as layout]
             [noir.session :as session]
@@ -34,21 +33,10 @@
   [:div.error error])
 
 (defn registration-page [& [id]]
-  (layout/base
-    (form-to [:post "/register"]
-             (vali/on-error :id error-item)
-             (label "user-id" "user id")
-             (text-field {:tabindex 1}  "id" id)
-             [:br]
-             (vali/on-error :pass error-item)
-             (label "pass" "password")
-             (password-field {:tabindex 2} "pass")
-             [:br]
-             (vali/on-error :pass1 error-item)
-             (label "pass1" "retype password")
-             (password-field {:tabindex 3} "pass1")
-             [:br]
-             (submit-button {:tabindex 4} "create account"))))
+  (layout/render "registration.html"
+                 {:id id 
+                  :id-error (first (vali/get-errors :id))
+                  :pass-error (first (vali/get-errors :pass))}))
 
 (defn create-gallery-path []
   (let [user-path (File. (gallery-path))]
@@ -78,11 +66,7 @@
   (resp/redirect "/"))
 
 (defn delete-account-page []
-  (layout/common
-    (form-to [:post "/confirm-delete"]
-             (submit-button "delete account"))
-    (form-to [:get "/"]
-             (submit-button "cancel"))))
+  (layout/render "deleteAccount.html"))
 
 (defn handle-confirm-delete []
   (let [user (session/get :user)]
