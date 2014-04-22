@@ -3,22 +3,35 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.1.6"]
-                 [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
                  [postgresql/postgresql "9.1-901.jdbc4"]
                  [org.clojure/java.jdbc "0.2.3"]
                  [lib-noir "0.7.6"]
                  [com.taoensso/timbre "2.6.1"]
                  [com.postspectacular/rotor "0.1.0"]
-                 [selmer "0.5.4"]]
-  :plugins [[lein-ring "0.8.10"]]
+                 [selmer "0.5.4"]
+                 [org.clojure/tools.reader "0.7.10"]
+                 [org.clojure/clojurescript "0.0-1806"]
+                 [domina "1.0.0"]
+                 [cljs-ajax "0.2.0"]
+                 [ring-middleware-format "0.3.1"]]
+  :plugins [[lein-ring "0.8.10"]
+            [lein-cljsbuild "0.3.2"]]
   :ring {:handler picture-gallery.handler/app
          :init picture-gallery.handler/init
          :destroy picture-gallery.handler/destroy}
+  :cljsbuild {:builds 
+              {:dev {:source-paths ["src-cljs"]
+                      :compiler 
+                      {:pretty-print true
+                      :output-to "resources/public/js/gallery-cljs.js"}}
+               :prod {:source-paths ["src-cljs"]
+                      :compiler 
+                      {:optimizations :advanced
+                        :output-to "resources/public/js/gallery-cljs.js"}}}}
   :aot :all
-  :profiles
-  {:production
-   {:ring
-    {:open-browser? false, :stacktraces? false, :auto-reload? false}}
-   :dev
-   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]]}})
+  :profiles {:production
+              {:ring
+              {:open-browser? false, :stacktraces? false, :auto-reload? false}}
+            :dev
+              {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]]}})

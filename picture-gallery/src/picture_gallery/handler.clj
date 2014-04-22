@@ -7,7 +7,8 @@
             [picture-gallery.routes.upload :refer [upload-routes]]
             [noir.session :as session]
             [picture-gallery.routes.gallery :refer [gallery-routes]]
-            [taoensso.timbre :as timbre]))
+            [taoensso.timbre :as timbre]
+            [ring.middleware.format :refer [wrap-restful-format]]))
 
 (defn info-appender [{:keys [level message]}]
   (println "level:" level "message:" message))
@@ -38,10 +39,11 @@
 (def app
   (noir-middleware/app-handler 
     [auth-routes 
-     home-routes 
-     upload-routes 
-     gallery-routes
-     app-routes]
-     :access-rules [user-page]))
+      home-routes 
+      upload-routes 
+      gallery-routes
+      app-routes]
+    :middleware [wrap-restful-format]
+    :access-rules [user-page]))
 
 
