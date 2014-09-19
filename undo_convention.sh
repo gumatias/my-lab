@@ -1,4 +1,17 @@
 #!/bin/sh
+
+#########################################################
+# usage
+# sh undo_convention.sh [file_or_directory]
+#
+# example
+# execute in given file only
+# sh undo_convention.sh ~/path/to/project/MyClass.java
+#
+# execute in all files in directory (non-recursive).
+# sh undo_convention.sh ~/path/to/project/package-name
+#########################################################
+
 path=$1
 # mFoo = pFoo; -> this.foo = foo;
 regex_for_constructor="%s/\([ \t]*\)[^this.]*m\([A-Z]\{1\}\)\([a-zA-Z0-9]\+\)[ ]*=[ ]*p\([A-Z]\{1\}\)\([a-zA-Z0-9]\+\);/\1this.\l\2\3 = \l\4\5;/g"
