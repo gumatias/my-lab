@@ -2,9 +2,9 @@
 
 #########################################################
 # This is a tiny script that reverts code conventions from
-# a file or a set of files. More specifically the main reason
-# for the creating of this script was to remove a specific code
-# conventions: (i.e. p, m, o prefixes) from Java files.
+# a file or a set of files. More specifically, the main 
+# reason for the creation of it was to remove a specific 
+# code conventions: (i.e. p, m, o prefixes) from Java files.
 #
 # usage
 # sh undo_convention.sh [file_or_directory]
