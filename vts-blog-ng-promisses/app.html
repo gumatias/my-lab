@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <script>
+      angular.module('myApp', [])
+      .controller('GroceriesController', ['$scope', '$q', function($scope, $q) {
+
+        function checkCookiePrice() {
+          var defer = $q.defer();
+
+          setTimeout(function () {
+            // very random. I could only believe in God back then
+            var random = Math.floor(Math.random() * 3);
+
+            if (random == 0)
+              // YES!
+              defer.resolve('cheap');
+            else if (random == 1)
+              // Well, guess I'll be eating lots of tasteless cream crackers...
+              defer.resolve('expensive');
+            else
+              // something bad happened, oh boy..
+              defer.reject();
+          }, 1000); // I would definitely take longer than a second, but this is just for demonstration purposes.
+
+          return defer.promise;
+        }
+
+        $scope.doShopping = function () {
+          $scope.kidResponse = undefined;
+          $scope.momSays = undefined;
+          checkCookiePrice().then(function (kidResponse) {
+            $scope.kidResponse = kidResponse;
+            if (kidResponse === 'cheap')
+              $scope.momSays = "OK, we can buy it...";
+            else if (kidResponse === 'expensive')
+              $scope.momSays = "Are you crazy?! that's worth one kilo of rice and beans!";
+          }, function () {
+            $scope.momSays = "Where's my kid?!?!";
+          });
+        }
+      }]);
+    </script>
+    <div>
+      <div ng-controller="GroceriesController">
+        <h2>Kid: {{kidResponse}}</h2>
+        <h2>Mom: {{momSays}}</h2>
+        <button ng-click="doShopping()"/>Go check the cookie price</button>
+      </div>
+    </div>
+  </body>
+</html>
